@@ -3,6 +3,7 @@ var keys = require("./keys.js");
 
 var Spotify = require("node-spotify-api");
 var axios = require("axios")
+var moment = require("moment")
 var fs = require("fs")
 
 var spotify = new Spotify({
@@ -25,8 +26,9 @@ if (command === "concert-this") {
   axios.get(query).then(res => {
     console.log(`Venue: ${res.data[0].venue.name}`)
     console.log(`Venue Location: ${res.data[0].venue.city}`)
-    console.log(`Date of Concert: ${res.data[0].datetime}`)
-    // How do i implement moment.js here??
+    var date = res.data[0].datetime
+    var concertDate = moment(date).format("MM/DD/YYYY")
+    console.log(`Date of Concert: ${concertDate}`)
   })
 } else if (command === "spotify-this") {
   let song = process.argv.splice(3, process.argv.length).join(" ")
@@ -92,8 +94,9 @@ if (command === "concert-this") {
       axios.get(query).then(res => {
         console.log(`Venue: ${res.data[0].venue.name}`)
         console.log(`Venue Location: ${res.data[0].venue.city}`)
-        console.log(`Date of Concert: ${res.data[0].datetime}`)
-        // How do i implement moment.js here??
+        var date = res.data[0].datetime
+        var concertDate = moment(date).format("MM/DD/YYYY")
+        console.log(`Date of Concert: ${concertDate}`)
       })
     } else if (newData[0] === "spotify-this") {
       let song = process.argv.splice(3, process.argv.length).join(" ")
