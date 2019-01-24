@@ -30,3 +30,30 @@ if (command === "concert-this") {
       // How do i implement moment.js here??
   })
 } 
+
+
+
+else if (command === "spotify-this") {
+  let song = process.argv.splice(3, process.argv.length).join(" ")
+
+  console.log(`\nSong Search: ${song}`)
+  console.log(`run the spotify search for ${song}\n`)
+
+    // Is this how I would set a default?? It works but is there a better way?
+    if (song === "") {
+      song = "The Sign Ace of Base"
+    }
+
+  spotify.search({
+    type: "track",
+    query: song
+  }, function (err, data) {
+    if (err) {
+      return console.log(`Error occurred: ${err}`)
+    }
+    console.log(`Artist: ${data.tracks.items[0].artists[0].name}`)
+    console.log(`Song Title: ${data.tracks.items[0].name}`)
+    console.log(`Preview Link: ${data.tracks.items[0].preview_url}`)
+    console.log(`Album Name: ${data.tracks.items[0].album.name}`)
+  });
+} 
