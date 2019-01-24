@@ -84,7 +84,9 @@ if (command === "concert-this") {
     console.log(newData)
 
     if (newData[0] === "concert-this") {
-      const artist = process.argv.splice(3, process.argv.length).join(" ")
+      const artist = newData[1]
+
+      // WHY ISNT THIS WORKING......??????
 
       console.log(`\nArtist Search: ${artist}`)
       console.log(`run the concert search for ${artist}\n`)
@@ -99,7 +101,7 @@ if (command === "concert-this") {
         console.log(`Date of Concert: ${concertDate}`)
       })
     } else if (newData[0] === "spotify-this") {
-      let song = process.argv.splice(3, process.argv.length).join(" ")
+      let song = newData[1]
 
       console.log(`\nSong Search: ${song}`)
       console.log(`run the spotify search for ${song}\n`)
@@ -122,7 +124,7 @@ if (command === "concert-this") {
         console.log(`Album Name: ${data.tracks.items[0].album.name}`)
       });
     } else if (newData[0] === "movie-this") {
-      let movie = process.argv.splice(3, process.argv.length).join(" ")
+      let movie = newData[1]
 
       console.log(`\nMovie Search: ${movie}`)
       console.log(`run the movie search for ${movie}\n`)
